@@ -1,0 +1,21 @@
+[package]
+name = "hardware"
+version = "0.1.0"
+# NOTE: once the compiler bug that is forcing us to pin nightly rust is fixed, this should be changed to 2021
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ufmt = "0.1.0"
+nb = "1.0.0"
+embedded-hal = "0.2.7"
+"arduino-hal" = {git = "https://github.com/rahix/avr-hal", branch = "main", features = ["arduino-uno"]}
+
+# Research if there are more graceful ways to handle this
+# Perhaps signalling to orchestration that something has failed?
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
